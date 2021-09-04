@@ -1,6 +1,6 @@
 import React from 'react'
 
-import IconButton from '@material-ui/core/IconButton'
+import { IconButton } from '@material-ui/core'
 import FileDownloadOutlinedIcon from '@material-ui/icons/FileDownloadOutlined'
 
 interface Props {
