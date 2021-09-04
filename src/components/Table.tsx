@@ -41,7 +41,7 @@ const Table: React.VFC = () => {
     return (
       <>
         {isShow ? (
-          <Tooltip title={value} followCursor>
+          <Tooltip title={value === null ? '' : value} followCursor>
             {td}
           </Tooltip>
         ) : (
