@@ -127,8 +127,8 @@ const DownloadOptionModal: React.VFC = () => {
             </div>
           </div>
           <a
-            href={DownloadFile}
-            className="w-[calc(100%-2*4px)] py-[1vh] card flex mt-[1vh]"
+            onClick={DownloadFile}
+            className="w-[calc(100%-2*4px)] py-[1vh] card flex mt-[1vh] cursor-pointer"
           >
             Download
           </a>
