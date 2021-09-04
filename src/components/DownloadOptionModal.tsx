@@ -70,7 +70,7 @@ const useStyles = makeStyles(() =>
   }),
 )
 
-const DownloadOptionModal = React.forwardRef((_, ref) => {
+const DownloadOptionModal = React.forwardRef(() => {
   const classes = useStyles()
 
   const FORMAT_LIST = ['CSV', 'JSON']
@@ -299,7 +299,7 @@ const DownloadOptionModal = React.forwardRef((_, ref) => {
 
   return (
     <>
-      <Container className={classes.customContainer} ref={ref}>
+      <Container className={classes.customContainer}>
         <PreviewCard />
         <OptionCard />
       </Container>
