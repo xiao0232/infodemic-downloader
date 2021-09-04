@@ -1,14 +1,12 @@
-import { defineConfig } from 'vite'
+import { ConfigEnv, defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import reactJsx from 'vite-react-jsx'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }: ConfigEnv) => ({
   root: './',
   plugins: [reactRefresh(), reactJsx()],
-  build: {
-    rollupOptions: {
-      // external: [/@material-ui\/styles\/jssPreset/, /refractor/],
-    },
+  define: mode === 'development' && {
+    global: {},
   },
-})
+}))
