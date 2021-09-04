@@ -6,12 +6,9 @@ import reactJsx from 'vite-react-jsx'
 export default defineConfig({
   root: './',
   plugins: [reactRefresh(), reactJsx()],
-  define: {
-    global: {},
-  },
   build: {
     rollupOptions: {
-      external: [/@material-ui\/styles\/jssPreset/, /refractor/],
+      // external: [/@material-ui\/styles\/jssPreset/, /refractor/],
     },
   },
 })
