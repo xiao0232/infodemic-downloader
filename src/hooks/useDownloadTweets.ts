@@ -16,7 +16,9 @@ interface TweetsResponse {
   dryQuery: number
 }
 
-export const useDownloadTweets = (props: Props): [TweetsResponse, string] => {
+export const useDownloadTweets = (
+  props: Props,
+): [TweetsResponse, () => void] => {
   const [res, setRes] = useState<TweetsResponse>({
     data: SampleData.data,
     loading: false,
@@ -36,7 +38,7 @@ export const useDownloadTweets = (props: Props): [TweetsResponse, string] => {
         `${fileType}-tweets/${hashtags}`,
     )
     const param = new URLSearchParams(Object(options)).toString()
-    setLink(url.toString() + param)
+    setLink(`${url.toString()}?${param}`)
     let dryQuery = 0
 
     await axios
@@ -67,5 +69,23 @@ export const useDownloadTweets = (props: Props): [TweetsResponse, string] => {
       })
   }
 
-  return [res, link]
+  const downloadFile = async () => {
+    const tempLink = document.createElement('a')
+    tempLink.style.display = 'none'
+    tempLink.href = link
+    tempLink.setAttribute(
+      'download',
+      `tweets_${props.hashtags}_${props.options?.n ? props.options.n : 5}.${
+        props.fileType
+      }`,
+    )
+
+    document.body.appendChild(tempLink)
+    tempLink.click()
+
+    window.URL.revokeObjectURL(link)
+    document.body.removeChild(tempLink)
+  }
+
+  return [res, downloadFile]
 }
