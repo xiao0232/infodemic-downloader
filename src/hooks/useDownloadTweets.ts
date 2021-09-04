@@ -36,7 +36,7 @@ export const useDownloadTweets = (props: Props): [TweetsResponse, string] => {
         `${fileType}-tweets/${hashtags}`,
     )
     const param = new URLSearchParams(Object(options)).toString()
-    setLink(url.toString() + param)
+    setLink(`${url.toString()}?${param}`)
     let dryQuery = 0
 
     await axios

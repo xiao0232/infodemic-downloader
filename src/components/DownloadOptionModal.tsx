@@ -91,7 +91,7 @@ const DownloadOptionModal: React.VFC = () => {
   })
 
   const hashtags = useContext(hashtagsContext)
-  const [DownloadTweets, DownloadLink] = useDownloadTweets({
+  const [DownloadTweets, DownloadFile] = useDownloadTweets({
     hashtags: hashtags.hashtags,
     fileType: format.toLowerCase(),
     options: options,
@@ -127,7 +127,7 @@ const DownloadOptionModal: React.VFC = () => {
             </div>
           </div>
           <a
-            href={DownloadLink}
+            href={DownloadFile}
             className="w-[calc(100%-2*4px)] py-[1vh] card flex mt-[1vh]"
           >
             Download
