@@ -244,7 +244,7 @@ const DownloadOptionModal = React.forwardRef(() => {
                           ...options,
                           sdate: newValue
                             ? moment(newValue)
-                                .format('YYYY-MM-DD')
+                                .format('yyyy-MM-dd')
                                 .replaceAll('-', '')
                             : '',
                         })
@@ -258,6 +258,7 @@ const DownloadOptionModal = React.forwardRef(() => {
                         />
                       )}
                       maxDate={edate}
+                      mask="____-__-__"
                     />
                   </LocalizationProvider>
                 </li>
@@ -272,7 +273,7 @@ const DownloadOptionModal = React.forwardRef(() => {
                           ...options,
                           edate: newValue
                             ? moment(newValue)
-                                .format('YYYY-MM-DD')
+                                .format('yyyy-MM-dd')
                                 .replaceAll('-', '')
                             : '',
                         })
@@ -286,6 +287,7 @@ const DownloadOptionModal = React.forwardRef(() => {
                         />
                       )}
                       minDate={sdate}
+                      mask="____-__-__"
                     />
                   </LocalizationProvider>
                 </li>
