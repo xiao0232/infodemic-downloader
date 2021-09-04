@@ -1,9 +1,6 @@
 import React, { useContext, useState } from 'react'
 
-import Chip from '@material-ui/core/Chip'
-import Autocomplete from '@material-ui/core/Autocomplete'
-import TextField from '@material-ui/core/TextField'
-import IconButton from '@material-ui/core/IconButton'
+import { Chip, Autocomplete, TextField, IconButton } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { makeStyles, createStyles } from '@material-ui/styles'
 

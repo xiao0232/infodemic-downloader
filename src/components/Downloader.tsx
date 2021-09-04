@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Modal from '@material-ui/core/Modal'
+import { Modal } from '@material-ui/core'
 
 import DownloadButton from './DownloadButton'
 import DownloadOptionModal from './DownloadOptionModal'
