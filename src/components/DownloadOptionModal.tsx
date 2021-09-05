@@ -1,8 +1,5 @@
 import React, { useContext, useState } from 'react'
 
-import Container from '@material-ui/core/Container'
-import { makeStyles, createStyles } from '@material-ui/styles'
-
 import { CodeBlock } from 'react-code-blocks'
 import codeTheme from '../codeTheme'
 import Options from '../interfaces/Options'
@@ -10,18 +7,17 @@ import Options from '../interfaces/Options'
 import { hashtagsContext } from '../hooks/useHashtagsContext'
 import { useDownloadTweets } from '../hooks/useDownloadTweets'
 
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-
-import TextField from '@material-ui/core/TextField'
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns'
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider'
-import DatePicker from '@material-ui/lab/DatePicker'
-
-import Slider from '@material-ui/core/Slider'
-
-import moment from 'moment'
+import {
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  TextField,
+  Slider,
+  Container,
+} from '@material-ui/core'
+import { makeStyles, createStyles } from '@material-ui/styles'
+import { LocalizationProvider, DatePicker } from '@material-ui/lab'
+import DateFnsUtils from '@date-io/date-fns'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -78,16 +74,12 @@ const DownloadOptionModal = React.forwardRef(() => {
   const ORDER_LIST = ['DESC', 'SCORE', 'ASC']
   const [order, setOrder] = useState(0)
   const [num, setNum] = useState(0)
-  const [sdate, setSdate] = useState(new Date('2020-02-20'))
-  const [edate, setEdate] = useState(new Date('2021-03-30'))
+  const [sdate, setSdate] = useState<Date | null>(new Date('2020-02-20'))
+  const [edate, setEdate] = useState<Date | null>(new Date('2021-03-30'))
 
   const [options, setOptions] = useState<Partial<Options>>({
     order: 0,
     n: 5,
-    // isBom: false,
-    // isTsv: false,
-    // sdate: '20200220',
-    // edate: '20210330',
   })
 
   const hashtags = useContext(hashtagsContext)
@@ -96,6 +88,13 @@ const DownloadOptionModal = React.forwardRef(() => {
     fileType: format.toLowerCase(),
     options: options,
   })
+
+  const formatDate = (dt: Date) => {
+    const y = dt.getFullYear()
+    const m = ('00' + (dt.getMonth() + 1)).slice(-2)
+    const d = ('00' + dt.getDate()).slice(-2)
+    return [y, m, d].join('')
+  }
 
   const PreviewCard = () => {
     return (
@@ -138,36 +137,6 @@ const DownloadOptionModal = React.forwardRef(() => {
   }
 
   const OptionCard = () => {
-    // const OptionDatePicker = (label: string) => {
-    //   const [value, setValue] = useState<Date>(
-    //     label === 'sdate' ? sdate : edate,
-    //   )
-
-    //   return (
-    //     <>
-    //       <LocalizationProvider dateAdapter={AdapterDateFns}>
-    //         <DatePicker
-    //           value={value}
-    //           onChange={(newValue) => {
-    //             setValue(new Date(String(newValue)))
-    //             setOptions({ ...options, label: newValue < 5 ? 5 : newValue })
-    //           }}
-    //           inputFormat="yyyy-MM-dd"
-    //           renderInput={(params) => (
-    //             <TextField
-    //               {...params}
-    //               fullWidth
-    //               className={`w-[calc(100%-2*4px)] card flex justify-start my-[1vh] mx-auto shadow-xl ${classes.customTextField}`}
-    //             />
-    //           )}
-    //           // minDate={new Date('2020-02-20')}
-    //           // maxDate={new Date('2021-03-30')}
-    //         />
-    //       </LocalizationProvider>
-    //     </>
-    //   )
-    // }
-
     return (
       <>
         <div className="w-[40vw] h-[90%] mx-[5vh] my-[2.5vh] flex justify-center">
@@ -235,18 +204,14 @@ const DownloadOptionModal = React.forwardRef(() => {
                 </li>
                 <li>
                   Start Date
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <LocalizationProvider dateAdapter={DateFnsUtils}>
                     <DatePicker
                       value={sdate}
                       onChange={(newValue) => {
-                        setSdate(moment(newValue).toDate())
+                        setSdate(newValue)
                         setOptions({
                           ...options,
-                          sdate: newValue
-                            ? moment(newValue)
-                                .format('yyyy-MM-dd')
-                                .replaceAll('-', '')
-                            : '',
+                          sdate: newValue ? formatDate(newValue) : '',
                         })
                       }}
                       inputFormat="yyyy-MM-dd"
@@ -264,18 +229,14 @@ const DownloadOptionModal = React.forwardRef(() => {
                 </li>
                 <li>
                   End Date
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <LocalizationProvider dateAdapter={DateFnsUtils}>
                     <DatePicker
                       value={edate}
                       onChange={(newValue) => {
-                        setEdate(moment(newValue).toDate())
+                        setEdate(newValue)
                         setOptions({
                           ...options,
-                          edate: newValue
-                            ? moment(newValue)
-                                .format('yyyy-MM-dd')
-                                .replaceAll('-', '')
-                            : '',
+                          edate: newValue ? formatDate(newValue) : '',
                         })
                       }}
                       inputFormat="yyyy-MM-dd"

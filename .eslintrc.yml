@@ -19,4 +19,15 @@ settings:
 plugins:
   - react
   - '@typescript-eslint'
-rules: { no-use-before-define: off, 'react/prop-types': off }
+rules:
+  {
+    no-use-before-define: off,
+    'react/prop-types': off,
+    'no-restricted-imports':
+      [
+        'error',
+        {
+          'patterns': ['@material-ui/*/*/*', '!@material-ui/core/test-utils/*'],
+        },
+      ],
+  }
