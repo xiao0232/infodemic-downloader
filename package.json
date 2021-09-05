@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build:visualize": "tsc --noEmit && vite build --mode visualize",
     "build:debug": "tsc --noEmit && vite build --debug",
     "serve": "vite preview",
     "lint": "eslint --ext .jsx,.js,.tsx,.ts ./src/",
@@ -41,6 +42,7 @@
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
     "prettier-plugin-tailwind": "^2.2.12",
+    "rollup-plugin-visualizer": "^5.5.2",
     "tailwindcss": "^2.2.7",
     "typescript": "^4.3.2",
     "vite": "^2.4.4",
