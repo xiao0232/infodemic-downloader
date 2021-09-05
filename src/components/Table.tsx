@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { useFetchTweets } from '../hooks/useFetchTweets'
-import Tooltip from '@material-ui/core/Tooltip'
+import { Tooltip } from '@material-ui/core'
 
+import { useFetchTweets } from '../hooks/useFetchTweets'
 import { hashtagsContext } from '../hooks/useHashtagsContext'
 
 const Table: React.VFC = () => {

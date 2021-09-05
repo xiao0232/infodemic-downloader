@@ -1,6 +1,7 @@
 import { ConfigEnv, defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import reactJsx from 'vite-react-jsx'
+import viteCompression from 'vite-plugin-compression'
 
 import { visualizer } from 'rollup-plugin-visualizer'
 // import viteCompression from 'vite-plugin-compression'
@@ -8,7 +9,11 @@ import { visualizer } from 'rollup-plugin-visualizer'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => ({
   root: './',
-  plugins: [reactRefresh(), reactJsx()],
+  plugins: [
+    reactRefresh(),
+    reactJsx(),
+    viteCompression({ algorithm: 'brotliCompress' }),
+  ],
   define: mode === 'development' && {
     global: {},
   },
