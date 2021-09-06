@@ -25,7 +25,7 @@ const Table: React.VFC = () => {
 
     const td = (
       <td
-        className="w-[calc(100%/32-2*4px)] min-w-[180px] table-cell text-center bg-dark-data"
+        className="w-[calc(100%/32-2*4px)] min-w-[180px] text-center table-cell bg-dark-data"
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       >
@@ -53,13 +53,13 @@ const Table: React.VFC = () => {
 
   return (
     <>
-      <div className="z-[1] h-[60vw] max-h-[calc(1024px*60/100)] mx-[5vh] my-[2.5vh] relative flex justify-center">
+      <div className="z-[1] h-[60vh] max-h-[calc(1024px*60/100)] mx-[5vh] my-[2.5vh] relative flex justify-center">
         <div
           className={`w-[calc(100%-2*4px)] card absolute block ${
-            !loading && 'after:bg-glow'
+            !loading && 'before:bg-glow'
           }`}
         >
-          <table className="border-spacing-5 scroll block table-auto m-4 border-separate">
+          <table className="border-spacing-5 block table-auto m-4 border-separate overflow-x-scroll">
             <thead>
               <tr>
                 {columns.map((column, r) => (

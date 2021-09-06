@@ -32,6 +32,7 @@ export const useDownloadTweets = (
   }, [props.hashtags, props.fileType, props.options])
 
   const fetchRequest = async ({ hashtags, fileType, options }: Props) => {
+    console.log(res.data)
     setRes({ ...res, loading: true })
     const url = new URL(
       'https://mongo-fastapi01.herokuapp.com/api/' +

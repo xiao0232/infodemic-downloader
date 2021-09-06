@@ -100,20 +100,20 @@ const DownloadOptionModal = React.forwardRef(() => {
     return (
       <>
         <div className="preview-card w-[30vw] h-[90%] mx-[5vh] my-[2.5vh] flex flex-col">
-          <div className="w-[calc(100%-2*4px)] h-full card scroll block">
+          <div className="w-[calc(100%-2*4px)] card no-scrollbar block h-full overflow-x-scroll">
             <div
               className={`w-full mx-auto rounded-[.5rem] flex ${
                 DownloadTweets.loading && 'loading'
               }`}
             >
-              <p className="flex-1 ml-[calc(20%-1vh)] my-2 w-full text-center text-3xl font-semibold">
+              <p className="ml-[calc(20%-1vh)] flex-1 my-2 w-full text-center text-3xl font-semibold">
                 Preview
               </p>
               <p className="w-[20%] mr-[1vw] my-2 text-center text-3xl font-semibold">
                 {DownloadTweets.dryQuery}
               </p>
             </div>
-            <div className="w-[90%] h-[calc(90%-1rem-2.25rem-2*6px)] scroll mx-auto my-8">
+            <div className="w-[90%] h-[calc(90%-1rem-2.25rem-2*6px)] no-scrollbar mx-auto my-8 overflow-scroll">
               <CodeBlock
                 text={
                   format === FORMAT_LIST[0]
@@ -127,7 +127,7 @@ const DownloadOptionModal = React.forwardRef(() => {
           </div>
           <a
             onClick={DownloadFile}
-            className="w-[calc(100%-2*4px)] py-[1vh] card flex mt-[1vh] cursor-pointer"
+            className="w-[calc(100%-2*4px)] py-[1vh] card mt-[1vh] flex cursor-pointer"
           >
             Download
           </a>
@@ -140,7 +140,7 @@ const DownloadOptionModal = React.forwardRef(() => {
     return (
       <>
         <div className="w-[40vw] h-[90%] mx-[5vh] my-[2.5vh] flex justify-center">
-          <div className="w-[calc(100%-2*4px)] card scroll block">
+          <div className="w-[calc(100%-2*4px)] card no-scrollbar block overflow-x-scroll">
             <div className="flex w-full">
               <p className="flex-1 mx-auto my-2 w-full text-center text-3xl font-semibold">
                 Options
